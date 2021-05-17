@@ -1,2 +1,11 @@
-# Musical_System-Application-prototype-using-AWS
-Musical Application using AWS services like S3, EC2, DynamoDB. Which can be deploy on EC2 free tier instance.
+# Music Subscription Application using Flask and AWS services
+
+Services Used: 
+1. AWS EC2
+2. AWS S3
+3. AWS DynamoDB
+
+Step by step guide on how to deploy it on EC2 instance is mentioned in command.txt file.
+
+
+
