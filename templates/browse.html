@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form.Artist.label(class="form-control-label") }}
+                    {{ form.Artist(class="form-control form-control-sm") }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{ form.Year.label(class="form-control-label") }}
+                    {{ form.Year(class="form-control form-control-sm") }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.Title.label(class="form-control-label") }}
+                {{ form.Title(class="form-control form-control-sm") }}<br>
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    <div>
+        {% if length == 0 %}
+            <h1>No result is retrieved. Please query again</h1>
+        {% else %}
+            <table id="music">
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Year</th>
+                    <th>Subscribe</th>
+                </tr>
+                {% for record in records %}
+                    <tr>
+                        <td>
+                            <img class="img-fluid" src="https://musical-bucket.s3.us-east-2.amazonaws.com/{{ record['img_url'].split("/")[-1] }}" width="120" height="120">
+                        </td>
+                        <td>
+                            {{ record['title'] }}
+                        </td>
+                        <td>
+                            {{ record['artist'] }}
+                        </td>
+                        <td>
+                            {{ record['year'] }}
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('subscribe_music', title = record['title']) }}">Subscribe</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Sign In</legend>
+                <div class="form-group">
+                    {{ form.Email_ID.label(class="form-control-label") }}
+                    {{ form.Email_ID(class="form-control form-control-lg") }}
+                </div>
+                <div class="form-group">
+                    {{ form.Password.label(class="form-control-label") }}
+                    {{ form.Password(class="form-control form-control-lg") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

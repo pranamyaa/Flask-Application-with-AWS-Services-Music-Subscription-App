@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h5> Your subscribed music:</h5>
+    <div>
+        {% if length == 0 %}
+            <h3>You haven't subscribed to any music yet..!!</h3>
+        {% else %}
+            <table id="music">
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Year</th>
+                    <th>Unsubscribe</th>
+                </tr>
+                {% for index, record in records %}
+                    <tr>
+                        <td>
+                            <img class="img-fluid" src="https://musical-bucket.s3.us-east-2.amazonaws.com/{{ record['img_url'].split("/")[-1] }}" width="120" height="120">
+                        </td>
+                        <td>
+                            {{ record['title'] }}
+                        </td>
+                        <td>
+                            {{ record['artist'] }}
+                        </td>
+                        <td>
+                            {{ record['year'] }}
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('unsubscribe_music', index = index) }}">Unsubscribe</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+{% endblock content %}
